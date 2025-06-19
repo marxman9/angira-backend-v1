@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const fileController_1 = require("../controllers/fileController");
+const auth_1 = require("../middleware/auth");
+const router = (0, express_1.Router)();
+router.use(auth_1.authenticateToken);
+router.post('/upload', fileController_1.upload.single('file'), fileController_1.uploadFile);
+router.get('/user-files', fileController_1.getUserFiles);
+router.get('/:id', fileController_1.getFile);
+exports.default = router;
